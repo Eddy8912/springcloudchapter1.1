@@ -17,11 +17,11 @@ public class ServiceProvideController {
     private final Logger logger = Logger.getLogger(getClass());
     @Autowired
     private DiscoveryClient client;
-    @RequestMapping(value = "/add" ,method = RequestMethod.GET)
-    public Integer add(@RequestParam Integer a, @RequestParam Integer b) {
+    @RequestMapping(value = "/helloworld" ,method = RequestMethod.GET)
+    public String add() {
         ServiceInstance instance = client.getLocalServiceInstance();
-        Integer r = a + b;
-        logger.info("/add, host:" + instance.getHost() + ", service_id:" + instance.getServiceId() + ", result:" + r);
-        return r;
+
+        logger.info("/add, host:" + instance.getHost() + ", service_id:" + instance.getServiceId());
+        return "helloworld";
     }
 }
