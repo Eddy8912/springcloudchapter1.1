@@ -18,10 +18,17 @@ public class ServiceProvideController {
     @Autowired
     private DiscoveryClient client;
     @RequestMapping(value = "/helloworld" ,method = RequestMethod.GET)
-    public String add() {
+    public String hello() {
         ServiceInstance instance = client.getLocalServiceInstance();
 
         logger.info("/add, host:" + instance.getHost() + ", service_id:" + instance.getServiceId());
         return "helloworld";
+    }
+    @RequestMapping(value = "/add" ,method = RequestMethod.GET)
+    public Integer add(@RequestParam Integer a, @RequestParam Integer b) {
+        ServiceInstance instance = client.getLocalServiceInstance();
+        Integer r = a + b;
+        logger.info("/add, host:" + instance.getHost() + ", service_id:" + instance.getServiceId() + ", result:" + r);
+        return r;
     }
 }
